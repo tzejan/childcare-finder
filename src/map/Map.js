@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import Pin from "./Pin";
-import CentreInfo from "./CentreInfo";
+import ReactMapGL from "react-map-gl";
+import Pins from "./Pins";
+import CentrePopUps from "./CentrePopUps";
 import LoadMapData from "../utils/LoadMapData";
 import data from "../data/data.json";
 console.log(data.length);
@@ -34,7 +34,6 @@ class Map extends Component {
   componentDidMount() {
     window.addEventListener("resize", this._resize);
     this._resize();
-
   }
 
   componentWillUnmount() {
@@ -56,19 +55,6 @@ class Map extends Component {
   };
 
   render() {
-    console.log(this.state.data[0].hideInfo)
-    let centreInfo = this.state.data[0].hideInfo || (
-      <Popup
-        tipSize={5}
-        anchor="top"
-        longitude={this.state.data[0].longitude}
-        latitude={this.state.data[0].latitude}
-        onClose={this.toggleInfoHide.bind(this, 0, true)}
-      >
-        <CentreInfo info={this.state.data[0]} />
-      </Popup>
-    );
-
     return (
       <ReactMapGL
         {...this.state.viewport}
@@ -76,24 +62,23 @@ class Map extends Component {
         onViewportChange={viewport => this.setState({ viewport })}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOXACCESSTOKEN}
       >
-        <Marker
-          key={`marker-1`}
-          longitude={this.state.data[0].longitude}
-          latitude={this.state.data[0].latitude}
-        >
-          <Pin size={20} show={this.state.data[0].showPin} onClick={this.toggleInfoHide.bind(this)} />
-        </Marker>
-        { centreInfo }
+        <Pins
+          data={this.state.data}
+          togglePopUp={this.togglePopUp.bind(this)}
+        />
+        <CentrePopUps
+          data={this.state.data}
+          togglePopUp={this.togglePopUp.bind(this)}
+        />
       </ReactMapGL>
     );
   }
 
-  toggleInfoHide(idx, forceClose){
+  togglePopUp(idx, forceClose) {
     console.log("clicked", forceClose, this.state.data);
     let updatedData = this.state.data;
     updatedData.hideInfo = forceClose || !updatedData.hideInfo;
-    this.setState({data: updatedData});
-
+    this.setState({ data: updatedData });
   }
 }
 
