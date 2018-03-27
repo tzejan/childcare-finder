@@ -1,0 +1,24 @@
+[
+  {
+    "centre_name": "E-BRIDGE PRE-SCHOOL PTE LTD",
+    "centre_address":
+      "217, COMPASSVALE DRIVE, #01 - 11, MULTI STOREY CAR PARK, SINGAPORE 540217",
+    "contact_no": "63865350",
+    "fees_charged": "$770.4",
+    "licence_tenure": "24",
+    "latitude": 1.38975552500006,
+    "longitude": 103.894482346,
+    "hideInfo": true,
+    "hidePin": false
+  },
+  {
+    "centre_name": "E-BRIDGE PRE-SCHOOL PTE. LTD.",
+    "centre_address":
+      "1, JELEBU ROAD, #04 - 05, BUKIT PANJANG PLAZA, SINGAPORE 677743",
+    "contact_no": "67691163",
+    "fees_charged": "$770.4",
+    "licence_tenure": "24",
+    "latitude": 1.38054245100005,
+    "longitude": 103.763993952
+  }
+]

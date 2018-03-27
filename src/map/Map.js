@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import Pin from "./Pin";
 import CentreInfo from "./CentreInfo";
+import LoadMapData from "../utils/LoadMapData";
+import data from "../data/data.json";
+console.log(data.length);
 
-let data = {
+let adata = {
   centre_name: "E-BRIDGE PRE-SCHOOL PTE LTD",
   centre_address:
     "217, COMPASSVALE DRIVE, #01 - 11, MULTI STOREY CAR PARK, SINGAPORE 540217",
@@ -31,6 +34,7 @@ class Map extends Component {
   componentDidMount() {
     window.addEventListener("resize", this._resize);
     this._resize();
+
   }
 
   componentWillUnmount() {
@@ -52,16 +56,16 @@ class Map extends Component {
   };
 
   render() {
-    console.log(data.hideInfo)
-    let centreInfo = data.hideInfo || (
+    console.log(this.state.data[0].hideInfo)
+    let centreInfo = this.state.data[0].hideInfo || (
       <Popup
         tipSize={5}
         anchor="top"
-        longitude={data.longitude}
-        latitude={data.latitude}
+        longitude={this.state.data[0].longitude}
+        latitude={this.state.data[0].latitude}
         onClose={this.toggleInfoHide.bind(this, 0, true)}
       >
-        <CentreInfo info={data} />
+        <CentreInfo info={this.state.data[0]} />
       </Popup>
     );
 
@@ -74,10 +78,10 @@ class Map extends Component {
       >
         <Marker
           key={`marker-1`}
-          longitude={data.longitude}
-          latitude={data.latitude}
+          longitude={this.state.data[0].longitude}
+          latitude={this.state.data[0].latitude}
         >
-          <Pin size={20} show={data.showPin} onClick={this.toggleInfoHide.bind(this)} />
+          <Pin size={20} show={this.state.data[0].showPin} onClick={this.toggleInfoHide.bind(this)} />
         </Marker>
         { centreInfo }
       </ReactMapGL>
