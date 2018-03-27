@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import "./CentreInfo.css";
 
 export default class CentreInfo extends PureComponent {
   render() {
@@ -6,7 +7,7 @@ export default class CentreInfo extends PureComponent {
     const displayName = `${info.centre_name}`;
 
     return (
-      <div>
+      <div className="centreInfo">
         <div>{displayName}</div>
         <div>{info.centre_address}</div>
         <div>{info.fees_charged}</div>
