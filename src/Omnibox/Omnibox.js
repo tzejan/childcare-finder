@@ -1,4 +1,5 @@
 import React from "react";
+import "./Omnibox.css"
 
 const Omnibox = () => (
   <div id="omnibox">

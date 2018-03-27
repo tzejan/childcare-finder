@@ -1,0 +1,11 @@
+#omnibox{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    z-index: 10;
+    background: #88888888;
+    display: block;
+    width: 224px;
+
+}
