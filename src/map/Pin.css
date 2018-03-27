@@ -1,0 +1,6 @@
+.pinStyle {
+  cursor: "pointer";
+  fill: "#d00";
+  stroke: "none";
+  transform: "translate(-10px,-20px)";
+}

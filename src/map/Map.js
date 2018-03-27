@@ -1,16 +1,7 @@
 import React, { Component } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import Pin from "./Pin";
-import CentreInfo from './CentreInfo';
-
-const h = Math.max(
-  document.documentElement.clientHeight,
-  window.innerHeight || 0
-);
-const w = Math.max(
-  document.documentElement.clientWidth,
-  window.innerWidth || 0
-);
+import CentreInfo from "./CentreInfo";
 
 let data = {
   centre_name: "E-BRIDGE PRE-SCHOOL PTE LTD",
@@ -20,19 +11,21 @@ let data = {
   fees_charged: "$770.4",
   licence_tenure: "24",
   latitude: 1.38975552500006,
-  longitude: 103.894482346
+  longitude: 103.894482346,
+  hideInfo: true,
+  hidePin: false
 };
 
 class Map extends Component {
   state = {
     viewport: {
-      width: w,
-      height: h,
+      width: 800,
+      height: 600,
       latitude: 1.3511794,
       longitude: 103.8169943,
       zoom: 11
-      // 1.3511794,103.8169943,12.09z
-    }
+    },
+    data: data
   };
 
   componentDidMount() {
@@ -52,7 +45,6 @@ class Map extends Component {
         height: this.props.height || window.innerHeight
       }
     });
-    console.log(this.state);
   };
 
   _updateViewport = viewport => {
@@ -60,6 +52,19 @@ class Map extends Component {
   };
 
   render() {
+    console.log(data.hideInfo)
+    let centreInfo = data.hideInfo || (
+      <Popup
+        tipSize={5}
+        anchor="top"
+        longitude={data.longitude}
+        latitude={data.latitude}
+        onClose={this.toggleInfoHide.bind(this, 0, true)}
+      >
+        <CentreInfo info={data} />
+      </Popup>
+    );
+
     return (
       <ReactMapGL
         {...this.state.viewport}
@@ -72,20 +77,19 @@ class Map extends Component {
           longitude={data.longitude}
           latitude={data.latitude}
         >
-          <Pin size={20} onClick={() => {}} />
+          <Pin size={20} show={data.showPin} onClick={this.toggleInfoHide.bind(this)} />
         </Marker>
-
-        <Popup
-          tipSize={5}
-          anchor="top"
-          longitude={data.longitude}
-          latitude={data.latitude}
-          onClose={() => {}}
-        >
-          <CentreInfo info={data} />
-        </Popup>
+        { centreInfo }
       </ReactMapGL>
     );
+  }
+
+  toggleInfoHide(idx, forceClose){
+    console.log("clicked", forceClose, this.state.data);
+    let updatedData = this.state.data;
+    updatedData.hideInfo = forceClose || !updatedData.hideInfo;
+    this.setState({data: updatedData});
+
   }
 }
 
