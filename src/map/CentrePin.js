@@ -2,7 +2,7 @@ import React from 'react';
 import Pin from './Pin';
 import { Marker } from "react-map-gl";
 
-const Pins = (props) => (
+const CentrePin = (props) => (
     <div>
         <Marker
           key={`marker-1`}
@@ -14,4 +14,4 @@ const Pins = (props) => (
     </div>
 );
 
-export default Pins;
+export default CentrePin;

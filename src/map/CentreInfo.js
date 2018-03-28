@@ -10,6 +10,7 @@ export default class CentreInfo extends PureComponent {
       <div className="centreInfo">
         <div>{displayName}</div>
         <div>{info.centre_address}</div>
+        <div>{info.contact_no}</div>
         <div>{info.fees_charged}</div>
         {/* <img width={240} src={info.image} /> */}
       </div>
