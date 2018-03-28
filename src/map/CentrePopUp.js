@@ -1,6 +1,7 @@
 import React from "react";
 import { Popup } from "react-map-gl";
 import CentreInfo from "./CentreInfo";
+import "./CentrePopUp.css"
 
 const CentrePopUps = props => (
   <div>

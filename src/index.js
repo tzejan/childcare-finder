@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import ChildCareFinderApp from './ChildCareFinderApp';
 import registerServiceWorker from './registerServiceWorker';
 require("dotenv").config();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<ChildCareFinderApp />, document.getElementById('root'));
 registerServiceWorker();

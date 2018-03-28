@@ -1,26 +1,11 @@
 import React, { Component } from "react";
 import ReactMapGL from "react-map-gl";
-import data from "../data/data.json";
-import CentreMarker from "./CentreMarker"
-console.log("after import",data.length);
-
-let adata = {
-  centre_name: "E-BRIDGE PRE-SCHOOL PTE LTD",
-  centre_address:
-    "217, COMPASSVALE DRIVE, #01 - 11, MULTI STOREY CAR PARK, SINGAPORE 540217",
-  contact_no: "63865350",
-  fees_charged: "$770.4",
-  licence_tenure: "24",
-  latitude: 1.38975552500006,
-  longitude: 103.894482346,
-  hideInfo: true,
-  hidePin: false
-};
+import CentreMarker from "./CentreMarker";
 
 class Map extends Component {
-  constructor(props){
+  constructor(props) {
     super();
-    console.log("constructor" + data.length);
+    console.log("constructor" + props.data.length);
     this.state = {
       viewport: {
         width: 800,
@@ -28,15 +13,13 @@ class Map extends Component {
         latitude: 1.3511794,
         longitude: 103.8169943,
         zoom: 11
-      },
-      data: data
+      }
     };
   }
 
   componentDidMount() {
     window.addEventListener("resize", this._resize);
     this._resize();
-    
   }
 
   componentWillUnmount() {
@@ -65,12 +48,12 @@ class Map extends Component {
         onViewportChange={viewport => this.setState({ viewport })}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOXACCESSTOKEN}
       >
-        <CentreMarker data={adata} />
+        {this.props.data.map((centre, idx) => (
+          <CentreMarker key={idx} data={centre} />
+        ))}
       </ReactMapGL>
     );
   }
-
-
 }
 
 export default Map;
