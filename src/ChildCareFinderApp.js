@@ -38,6 +38,7 @@ class ChildCareFinderApp extends Component {
         <Omnibox
           onSearch={this.searchForCentre}
           searchValue={this.state.searchParams.freeText}
+          data={this.state.data}
         />
         <Map data={this.state.data} />
       </div>

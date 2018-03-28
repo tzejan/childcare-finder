@@ -36,11 +36,14 @@ class Omnibox extends Component {
           <TextField
             id="uncontrolled"
             label="Search"
-            value={classes.searchValue}
+            value={this.props.searchValue}
             className={classes.textField}
             margin="normal"
             onChange={this.controlledHandleKey}
           />
+          <Typography component="p">
+            { this.props.data.length} results shown.
+          </Typography>
         </Paper>
       </div>
     );
