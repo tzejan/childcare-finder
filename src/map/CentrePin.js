@@ -6,10 +6,10 @@ const Pins = (props) => (
     <div>
         <Marker
           key={`marker-1`}
-          longitude={props.data[0].longitude}
-          latitude={props.data[0].latitude}
+          longitude={props.data.longitude}
+          latitude={props.data.latitude}
         >
-          <Pin size={20} show={props.data[0].showPin} onClick={props.togglePopUp.bind(this)} />
+          <Pin size={20} onClick={props.onClick} />
         </Marker>
     </div>
 );

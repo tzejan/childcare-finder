@@ -4481,7 +4481,9 @@
     "centre_address": "201D, PUNGGOL FIELD, #01 - 270, SINGAPORE 824201",
     "contact_no": "63438358",
     "fees_charged": "$856",
-    "licence_tenure": "24"
+    "licence_tenure": "24",
+    "latitude": 1.39968432100005,
+    "longitude": 103.903378057
   },
   {
     "centre_name": "SUNFLOWER PRESCHOOL @ PUNGGOL FIELD WALK PTE. LTD.",
@@ -4507,7 +4509,9 @@
       "756, UPPER SERANGOON ROAD, #01 - 09-14, UPPER SERANGOON SHOPPING CENTRE, SINGAPORE 534626",
     "contact_no": "62809788",
     "fees_charged": "$950",
-    "licence_tenure": "12"
+    "licence_tenure": "12",
+    "latitude": 1.35348088300003,
+    "longitude": 103.878828409
   },
   {
     "centre_name": "LITTLE MIGHTY ME PTE. LTD.",
@@ -4720,7 +4724,9 @@
       "45, MACPHERSON ROAD, #01 - 01, SENNETT ESTATE, SINGAPORE 348469",
     "contact_no": "62818995",
     "fees_charged": "$1080",
-    "licence_tenure": "24"
+    "licence_tenure": "24",
+    "latitude": 1.32865622100007,
+    "longitude": 103.870310678
   },
   {
     "centre_name": "STAR LEARNERS @ ANG MO KIO PTE. LTD.",
@@ -9267,7 +9273,9 @@
       "178, BUKIT BATOK WEST AVENUE 8, #01 - 217, SINGAPORE 650178",
     "contact_no": "66650148",
     "fees_charged": "$743",
-    "licence_tenure": "24"
+    "licence_tenure": "24",
+    "latitude": 1.34605460600005,
+    "longitude": 103.742605871
   },
   {
     "centre_name": "PCF SPARKLETOTS PRESCHOOL @ BUONA VISTA  BLK 32 (CC)",

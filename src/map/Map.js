@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import ReactMapGL from "react-map-gl";
-import Pins from "./Pins";
-import CentrePopUps from "./CentrePopUps";
-import LoadMapData from "../utils/LoadMapData";
 import data from "../data/data.json";
-console.log(data.length);
+import CentreMarker from "./CentreMarker"
+console.log("after import",data.length);
 
 let adata = {
   centre_name: "E-BRIDGE PRE-SCHOOL PTE LTD",
@@ -20,20 +18,25 @@ let adata = {
 };
 
 class Map extends Component {
-  state = {
-    viewport: {
-      width: 800,
-      height: 600,
-      latitude: 1.3511794,
-      longitude: 103.8169943,
-      zoom: 11
-    },
-    data: data
-  };
+  constructor(props){
+    super();
+    console.log("constructor" + data.length);
+    this.state = {
+      viewport: {
+        width: 800,
+        height: 600,
+        latitude: 1.3511794,
+        longitude: 103.8169943,
+        zoom: 11
+      },
+      data: data
+    };
+  }
 
   componentDidMount() {
     window.addEventListener("resize", this._resize);
     this._resize();
+    
   }
 
   componentWillUnmount() {
@@ -62,24 +65,12 @@ class Map extends Component {
         onViewportChange={viewport => this.setState({ viewport })}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOXACCESSTOKEN}
       >
-        <Pins
-          data={this.state.data}
-          togglePopUp={this.togglePopUp.bind(this)}
-        />
-        <CentrePopUps
-          data={this.state.data}
-          togglePopUp={this.togglePopUp.bind(this)}
-        />
+        <CentreMarker data={adata} />
       </ReactMapGL>
     );
   }
 
-  togglePopUp(idx, forceClose) {
-    console.log("clicked", forceClose, this.state.data);
-    let updatedData = this.state.data;
-    updatedData.hideInfo = forceClose || !updatedData.hideInfo;
-    this.setState({ data: updatedData });
-  }
+
 }
 
 export default Map;
