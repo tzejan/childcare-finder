@@ -1,9 +1,14 @@
 language: node_js
 node_js:
-  - 9.9
+- 9.9
 cache:
   directories:
-    - node_modules
+  - node_modules
 script:
-  - npm run build
-  - npm test
+- npm run build
+- npm test
+deploy:
+  provider: heroku
+  app: childcare-finder
+  api_key:
+    secure: Cln5c5BIbLs7mSvTOXyyohXOWRT4vJ4rwAo49qjAFGWRDWdCp2hYkHPqe4Xl8cK/8pynpfl/dTEcq/fLR7k5EKweAjtT4mwImiLp2jjsOEcFc3ZzUULv/n4YKqHYeAJL831nJkiRimjozRPG5LXEZQzyb148HSQtcCrQ6id2EG6my48mo+WBZqSjN7pdTtYLN9OS1X8HxaihGNdE1Ma7+M+21wK7AKiBazRm/KLmwFxNxp8QfRsxMDBYiXe2M7smHi/SWzseEcFjx/cm5aVNLm6KNvj1mcrc6X2ywl26mGl52MamdI0Y62ZkK7Igi5JX5czytjMFQy48MnSnsidq/6cXDMpghbkq+nbebZLSF2FG/G1FEx+I7o2olpbhDrtGKpfLKpH/3GErXpXt69hUhdEKu9k4ya1ax6QnyaKJMFHH83mt9Q1seuoYTdBXTA/3FEgY/zojj755bPArpvVYxq8N8lDzO7n4oGNyDJbb5bzNiNaAjIq5XEUqTSJa06cUPZwKeJSCXEwbVZqmHVve1MUt3y/mVpicRUgwVs6RT0yD7EPEHR8Lzxu6CgZtNs7akax2rklJaVEcKXungFCFLWzqZlRKAKym+fTN8kX88wJ6vYh5WpHB6ocV3e6nIiI1WvShTJsEH9soTFrUT7TPSUTgc9mKBu06T8kVi4yuLhc=
