@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { withStyles } from "material-ui/styles";
 import Paper from "material-ui/Paper";
 import Typography from "material-ui/Typography";
-import List, { ListItem, ListItemText } from "material-ui/List";
 import SearchBar from './SearchBar';
+import ResultListing from "./ResultListing";
 import "./Omnibox.css";
+
 const styles = theme => ({
   root: theme.mixins.gutters({
     paddingTop: theme.spacing.unit,
@@ -32,15 +33,7 @@ class Omnibox extends Component {
             Narrow your search to a particular postal code, operator or name.
           </Typography>
           <SearchBar searchValue={this.props.searchValue} onChange={this.controlledHandleKey}/>
-          <List>
-            {data.map((centre, idx) => {
-              return (
-                <ListItem key={idx} button>
-                  <ListItemText primary={centre.centre_name} secondary={centre.centre_address} />
-                </ListItem>
-              );
-            })}
-          </List>
+          <ResultListing data={data}/>
           <Typography component="p">{data.length} results shown.</Typography>
         </Paper>
       </div>
