@@ -46,15 +46,16 @@ class ChildCareFinderApp extends Component {
   }
 
   searchForCentre(searchKey) {
+    console.log("SearchKey ", searchKey);
     this.setState({ searchParams: { freeText: searchKey } });
-    this.filterDataBySearchKey();
+    this.filterDataBySearchKey(searchKey);
   }
 
-  filterDataBySearchKey() {
-    const searchKey = this.state.searchParams.freeText;
+  filterDataBySearchKey(searchKey) {
+    console.log("freeText ", searchKey);
     let regex = RegExp(searchKey, "gi");
     let filteredData = this.getValidData().filter(centre =>
-      regex.test(centre.centre_name)
+      regex.test([centre.centre_name, centre.centre_address, centre.contact_no].join(" "))
     );
     this.setState({ data: filteredData });
   }

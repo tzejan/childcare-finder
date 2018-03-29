@@ -6,16 +6,17 @@ import React, {PureComponent} from 'react';
 
 const pinStyle = {
   cursor: 'pointer',
-  color: '#d00',
+  color: '#02a8f4',
   stroke: 'none'
+  
 };
 
 export default class Pin extends PureComponent {
 
   render() {
     const {size = 20, onClick} = this.props;
-    return <i className="material-icons" onClick={onClick} style={{...pinStyle, transform: `translate(${-size/2}px,${-size}px)`}}> location_on </i>
-
+    return <i className="material-icons" onClick={onClick} style={{...pinStyle, transform: `translate(${-size/2}px,${-size}px)`}}> child_care </i>
+    
     // return (
     //   <svg height={size} viewBox='0 0 24 24'
     //     style={{...pinStyle, transform: `translate(${-size/2}px,${-size}px)`}}
