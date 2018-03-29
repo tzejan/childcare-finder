@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Omnibox from "../../Omnibox/OmniBox";
+import Omnibox from "../../Omnibox/Omnibox";
 
 describe("Omnibox tests", () => {
   let data = [
