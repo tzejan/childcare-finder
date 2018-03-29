@@ -23,6 +23,7 @@ class Omnibox extends Component {
   }
   render() {
     const { classes, data } = this.props;
+    const summaryText = this.props.searchValue === "" ? this.props.dbCount + " centres on file." : data.length + " results shown.";
     return (
       <div id="omnibox">
         <Paper className={classes.root} elevation={4}>
@@ -33,8 +34,8 @@ class Omnibox extends Component {
             Narrow your search to a particular postal code, operator or name.
           </Typography>
           <SearchBar searchValue={this.props.searchValue} onChange={this.controlledHandleKey}/>
-          <ResultListing data={data}/>
-          <Typography component="p">{data.length} results shown.</Typography>
+          <ResultListing data={data} zoomToChildCareCentre={this.props.zoomToChildCareCentre}/>
+          <Typography component="p">{summaryText}</Typography>
         </Paper>
       </div>
     );

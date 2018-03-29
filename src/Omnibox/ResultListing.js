@@ -1,11 +1,11 @@
 import React from "react";
 import List, { ListItem, ListItemText } from "material-ui/List";
 
-const componentName = props => (
+const ResultListing = props => (
   <List>
     {props.data.map((centre, idx) => {
       return (
-        <ListItem key={idx} button>
+        <ListItem key={idx} button onClick={props.zoomToChildCareCentre.bind(this, idx)}>
           <ListItemText
             primary={centre.centre_name}
             secondary={centre.centre_address}
@@ -16,4 +16,4 @@ const componentName = props => (
   </List>
 );
 
-export default componentName;
+export default ResultListing;

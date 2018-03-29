@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, {FlyToInterpolator} from "react-map-gl";
 import CentreMarker from "./CentreMarker";
 
 class Map extends Component {
@@ -17,6 +17,12 @@ class Map extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps){
+    if (this.props.zoomTo !== nextProps.zoomTo){
+      this._goToViewport(nextProps.data[nextProps.zoomTo]);
+    }
+  }
+
   componentDidMount() {
     window.addEventListener("resize", this._resize);
     this._resize();
@@ -26,13 +32,22 @@ class Map extends Component {
     window.removeEventListener("resize", this._resize);
   }
 
-  _resize = () => {
-    this.setState({
-      viewport: {
-        ...this.state.viewport,
-        width: this.props.width || window.innerWidth,
-        height: this.props.height || window.innerHeight
-      }
+  _onViewportChange = viewport => this.setState({
+    viewport: {...this.state.viewport, ...viewport}
+  });
+
+  _resize = () => this._onViewportChange({
+    width: this.props.width || window.innerWidth,
+    height: this.props.height || window.innerHeight
+  });
+
+  _goToViewport = ({longitude, latitude}) => {
+    this._onViewportChange({
+      longitude,
+      latitude,
+      zoom: 12.5,
+      transitionInterpolator: new FlyToInterpolator(),
+      transitionDuration: 1500
     });
   };
 

@@ -23,10 +23,12 @@ class ChildCareFinderApp extends Component {
     super();
     this.state = {
       data: {},
-      searchParams: { freeText: "" }
+      searchParams: { freeText: "" },
+      zoomTo: -1
     };
     this.searchForCentre = this.searchForCentre.bind(this);
     this.filterDataBySearchKey = this.filterDataBySearchKey.bind(this);
+    this.zoomToChildCareCentre = this.zoomToChildCareCentre.bind(this);
   }
 
   componentWillMount() {
@@ -38,30 +40,39 @@ class ChildCareFinderApp extends Component {
         <Omnibox
           onSearch={this.searchForCentre}
           searchValue={this.state.searchParams.freeText}
+          zoomToChildCareCentre={this.zoomToChildCareCentre}
           data={this.state.data}
+          dbCount={data.length}
         />
-        <Map data={this.state.data} />
+        <Map data={this.state.data} zoomTo={this.state.zoomTo} />
       </div>
     );
   }
 
   searchForCentre(searchKey) {
-    console.log("SearchKey ", searchKey);
-    this.setState({ searchParams: { freeText: searchKey } });
-    this.filterDataBySearchKey(searchKey);
+    try {
+      RegExp(searchKey, "i");
+      this.setState({ searchParams: { freeText: searchKey } });
+      this.filterDataBySearchKey(searchKey);
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   filterDataBySearchKey(searchKey) {
-    console.log("freeText ", searchKey);
-    let regex = RegExp(searchKey, "gi");
+    let regex = RegExp(searchKey, "i");
     let filteredData = this.getValidData().filter(centre =>
-      regex.test([centre.centre_name, centre.centre_address, centre.contact_no].join(" "))
+      regex.test([centre.centre_name, centre.centre_address].join(" "))
     );
     this.setState({ data: filteredData });
   }
 
   getValidData() {
-    return data.slice(0, 300).filter(centre => centre.longitude !== undefined);
+    return data.slice(0, 30).filter(centre => centre.longitude !== undefined);
+  }
+
+  zoomToChildCareCentre(centreIndex, event){
+    this.setState({zoomTo: centreIndex});
   }
 }
 
