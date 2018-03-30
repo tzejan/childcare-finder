@@ -31,7 +31,7 @@ class Omnibox extends Component {
             Childcare Centre Finder
           </Typography>
           <Typography component="p">
-            Narrow your search to a particular postal code, operator or name.
+            Narrow your search to a particular operator, address or postal code.
           </Typography>
           <SearchBar searchValue={this.props.searchValue} onChange={this.controlledHandleKey}/>
           <Typography component="p">{summaryText}</Typography>

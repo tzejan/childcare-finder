@@ -1,7 +1,10 @@
 i.material-icons.pin-style {
-  font-family: "Material Icons";
-  cursor: "pointer";
-  color: "#dd0000dd";
-  stroke: "none";
-  transform: "translate(-10px,-20px)";
+  cursor: pointer;
+  color: rgba(221, 0, 0, 0.8);
+  stroke: none;
+  transform: translate(-10px, -20px);
+}
+
+.highlight {
+  text-shadow: 0px 0px 25px deepskyblue;
 }

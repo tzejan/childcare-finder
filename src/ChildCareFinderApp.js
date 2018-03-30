@@ -23,7 +23,7 @@ class ChildCareFinderApp extends Component {
     this.state = {
       data: [],
       searchParams: { freeText: "" },
-      zoomTo: -1
+      zoomTo: null
     };
     this.searchForCentre = this.searchForCentre.bind(this);
     this.filterDataBySearchKey = this.filterDataBySearchKey.bind(this);

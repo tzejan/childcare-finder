@@ -5,7 +5,7 @@ const ResultListing = props => (
   <List>
     {props.data.map((centre, idx) => {
       return (
-        <ListItem key={idx} button onClick={props.zoomToChildCareCentre.bind(this, idx)}>
+        <ListItem key={idx} button disableGutters onClick={props.zoomToChildCareCentre.bind(this, idx)}>
           <ListItemText
             primary={centre.centre_name}
             secondary={centre.centre_address}

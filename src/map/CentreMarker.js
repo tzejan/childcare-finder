@@ -11,7 +11,7 @@ class CentreMarker extends Component {
     let data = this.props.data;
     return (
       <div>
-        <CentrePin data={data} onClick={this.togglePopUp.bind(this)} />
+        <CentrePin data={data} highlight={this.props.highlight} onClick={this.togglePopUp.bind(this)} />
         {this.state.showPopUp ? (
           <CentrePopUp
             data={data}

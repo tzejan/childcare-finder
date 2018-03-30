@@ -63,7 +63,7 @@ class Map extends Component {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOXACCESSTOKEN}
       >
         {this.props.data.map((centre, idx) => (
-          <CentreMarker key={idx} data={centre} />
+          <CentreMarker key={idx} highlight={this.props.zoomTo === idx} data={centre} />
         ))}
       </ReactMapGL>
     );
