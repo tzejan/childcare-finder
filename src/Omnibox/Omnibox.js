@@ -34,8 +34,8 @@ class Omnibox extends Component {
             Narrow your search to a particular postal code, operator or name.
           </Typography>
           <SearchBar searchValue={this.props.searchValue} onChange={this.controlledHandleKey}/>
-          <ResultListing data={data} zoomToChildCareCentre={this.props.zoomToChildCareCentre}/>
           <Typography component="p">{summaryText}</Typography>
+          <ResultListing data={data} zoomToChildCareCentre={this.props.zoomToChildCareCentre}/>
         </Paper>
       </div>
     );

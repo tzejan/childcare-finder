@@ -5,7 +5,6 @@ import CentreMarker from "./CentreMarker";
 class Map extends Component {
   constructor(props) {
     super();
-    console.log("constructor" + props.data.length);
     this.state = {
       viewport: {
         width: 800,
@@ -45,7 +44,7 @@ class Map extends Component {
     this._onViewportChange({
       longitude,
       latitude,
-      zoom: 12.5,
+      zoom: 13.5,
       transitionInterpolator: new FlyToInterpolator(),
       transitionDuration: 1500
     });

@@ -1,6 +1,7 @@
-.pinStyle {
+i.material-icons.pin-style {
+  font-family: "Material Icons";
   cursor: "pointer";
-  fill: "#d00";
+  color: "#dd0000dd";
   stroke: "none";
   transform: "translate(-10px,-20px)";
 }

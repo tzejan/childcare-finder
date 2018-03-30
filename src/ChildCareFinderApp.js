@@ -3,7 +3,6 @@ import "./ChildCareFinderApp.css";
 import Map from "./map/Map";
 import Omnibox from "./Omnibox/Omnibox";
 import data from "./data/data.json";
-console.log("after import", data.length);
 
 // let adata = {
 //   centre_name: "E-BRIDGE PRE-SCHOOL PTE LTD",
@@ -22,7 +21,7 @@ class ChildCareFinderApp extends Component {
   constructor() {
     super();
     this.state = {
-      data: {},
+      data: [],
       searchParams: { freeText: "" },
       zoomTo: -1
     };
