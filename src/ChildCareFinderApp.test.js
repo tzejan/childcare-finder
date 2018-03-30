@@ -33,6 +33,16 @@ describe('ChildCareFinder tests', () => {
     });
   });
 
+  describe('Zoom to test', () => {
+    it('should set state correctly', () => {
+      let centreIndex = 9;
+      let wrapper = shallow(<ChildCareFinderApp />);
+
+      wrapper.instance().zoomToChildCareCentre(centreIndex);
+      expect(wrapper.state().zoomTo).toEqual(centreIndex);
+    });
+  });
+
   describe('Filter Results test', () => {
     let data = [
       {
@@ -63,7 +73,7 @@ describe('ChildCareFinder tests', () => {
       wrapper.instance().getValidData = mockFilterData;
       wrapper.update();
 
-      wrapper.instance().filterDataBySearchKey(searchVal);
+      wrapper.instance()._filterDataBySearchKey(searchVal);
       expect(wrapper.state().data.length).toEqual(2);
     });
 
@@ -75,7 +85,7 @@ describe('ChildCareFinder tests', () => {
       wrapper.instance().getValidData = mockFilterData;
       wrapper.update();
 
-      wrapper.instance().filterDataBySearchKey(searchVal);
+      wrapper.instance()._filterDataBySearchKey(searchVal);
       expect(wrapper.state().data.length).toEqual(1);
     });
 
@@ -87,7 +97,7 @@ describe('ChildCareFinder tests', () => {
       wrapper.instance().getValidData = mockFilterData;
       wrapper.update();
 
-      wrapper.instance().filterDataBySearchKey(searchVal);
+      wrapper.instance()._filterDataBySearchKey(searchVal);
       expect(wrapper.state().data.length).toEqual(2);
     });
 
@@ -99,7 +109,19 @@ describe('ChildCareFinder tests', () => {
       wrapper.instance().getValidData = mockFilterData;
       wrapper.update();
 
-      wrapper.instance().filterDataBySearchKey(searchVal);
+      wrapper.instance()._filterDataBySearchKey(searchVal);
+      expect(wrapper.state().data.length).toEqual(0);
+    });
+
+    it('should return no results and not search if search string is empty', () => {
+      let searchVal = "";
+      let wrapper = shallow(<ChildCareFinderApp />);
+      let mockFilterData = jest.fn();
+      mockFilterData.mockReturnValue(data);
+      wrapper.instance().getValidData = mockFilterData;
+      wrapper.update();
+
+      wrapper.instance()._filterDataBySearchKey(searchVal);
       expect(wrapper.state().data.length).toEqual(0);
     });
   });

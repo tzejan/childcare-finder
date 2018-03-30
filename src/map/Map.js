@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ReactMapGL, {FlyToInterpolator} from "react-map-gl";
+import ReactMapGL, { FlyToInterpolator } from "react-map-gl";
 import CentreMarker from "./CentreMarker";
 
 class Map extends Component {
@@ -16,8 +16,11 @@ class Map extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps){
-    if (this.props.zoomTo !== nextProps.zoomTo){
+  componentWillReceiveProps(nextProps) {
+    if (
+      this.props.zoomTo !== nextProps.zoomTo &&
+      (nextProps.zoomTo >= 0 && nextProps.zoomTo < nextProps.data.length)
+    ) {
       this._goToViewport(nextProps.data[nextProps.zoomTo]);
     }
   }
@@ -31,16 +34,18 @@ class Map extends Component {
     window.removeEventListener("resize", this._resize);
   }
 
-  _onViewportChange = viewport => this.setState({
-    viewport: {...this.state.viewport, ...viewport}
-  });
+  _onViewportChange = viewport =>
+    this.setState({
+      viewport: { ...this.state.viewport, ...viewport }
+    });
 
-  _resize = () => this._onViewportChange({
-    width: this.props.width || window.innerWidth,
-    height: this.props.height || window.innerHeight
-  });
+  _resize = () =>
+    this._onViewportChange({
+      width: this.props.width || window.innerWidth,
+      height: this.props.height || window.innerHeight
+    });
 
-  _goToViewport = ({longitude, latitude}) => {
+  _goToViewport = ({ longitude, latitude }) => {
     this._onViewportChange({
       longitude,
       latitude,
@@ -63,7 +68,11 @@ class Map extends Component {
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOXACCESSTOKEN}
       >
         {this.props.data.map((centre, idx) => (
-          <CentreMarker key={idx} highlight={this.props.zoomTo === idx} data={centre} />
+          <CentreMarker
+            key={idx}
+            highlight={this.props.zoomTo === idx}
+            data={centre}
+          />
         ))}
       </ReactMapGL>
     );
