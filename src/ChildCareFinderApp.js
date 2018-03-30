@@ -4,19 +4,6 @@ import Map from "./map/Map";
 import Omnibox from "./Omnibox/Omnibox";
 import data from "./data/data.json";
 
-// let adata = {
-//   centre_name: "E-BRIDGE PRE-SCHOOL PTE LTD",
-//   centre_address:
-//     "217, COMPASSVALE DRIVE, #01 - 11, MULTI STOREY CAR PARK, SINGAPORE 540217",
-//   contact_no: "63865350",
-//   fees_charged: "$770.4",
-//   licence_tenure: "24",
-//   latitude: 1.38975552500006,
-//   longitude: 103.894482346,
-//   hideInfo: true,
-//   hidePin: false
-// };
-
 class ChildCareFinderApp extends Component {
   constructor() {
     super();
@@ -26,13 +13,14 @@ class ChildCareFinderApp extends Component {
       zoomTo: null
     };
     this.searchForCentre = this.searchForCentre.bind(this);
-    this.filterDataBySearchKey = this.filterDataBySearchKey.bind(this);
     this.zoomToChildCareCentre = this.zoomToChildCareCentre.bind(this);
+    this._filterDataBySearchKey = this._filterDataBySearchKey.bind(this);
   }
 
   componentWillMount() {
-    this.setState({ data: this.getValidData() });
+    // this.setState({ data: this.getValidData() });
   }
+
   render() {
     return (
       <div>
@@ -52,13 +40,17 @@ class ChildCareFinderApp extends Component {
     try {
       RegExp(searchKey, "i");
       this.setState({ searchParams: { freeText: searchKey } });
-      this.filterDataBySearchKey(searchKey);
+      this._filterDataBySearchKey(searchKey);
     } catch (error) {
       console.log(error.message);
     }
   }
 
-  filterDataBySearchKey(searchKey) {
+  _filterDataBySearchKey(searchKey) {
+    if (searchKey.length < 1){
+      this.setState({ data: [] });
+      return;
+    }
     let regex = RegExp(searchKey, "i");
     let filteredData = this.getValidData().filter(centre =>
       regex.test([centre.centre_name, centre.centre_address].join(" "))
@@ -67,7 +59,7 @@ class ChildCareFinderApp extends Component {
   }
 
   getValidData() {
-    return data.slice(0, 30).filter(centre => centre.longitude !== undefined);
+    return data.filter(centre => centre.longitude !== undefined);
   }
 
   zoomToChildCareCentre(centreIndex, event){
