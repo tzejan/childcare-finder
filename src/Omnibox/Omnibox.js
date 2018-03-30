@@ -23,7 +23,7 @@ class Omnibox extends Component {
   }
   render() {
     const { classes, data } = this.props;
-    const summaryText = this.props.searchValue === "" ? this.props.dbCount + " centres on file." : data.length + " results shown.";
+    const summaryText = this.props.searchValue === "" ? this.props.dbCount + " childcare centres on file." : data.length + " results shown.";
     return (
       <div id="omnibox">
         <Paper className={classes.root} elevation={4}>
